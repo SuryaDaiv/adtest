@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fullscreen Text + Random Line</title>
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid;
+      place-items: center;     /* center everything */
+      padding: 5vmin;
+      font-family: system-ui, Arial, sans-serif;
+    }
+    .container { text-align: center; }
+    h1 {
+      margin: 0;
+      font-size: 18vmin;       /* scales with screen size */
+      line-height: 1.05;
+    }
+    p {
+      margin: 3vmin 0 0;
+      font-size: 3.6vmin;      /* smaller, also responsive */
+      line-height: 1.3;
+      opacity: .85;
+    }
+    button {
+      margin-top: 2vmin;
+      font-size: 2.8vmin;
+      padding: 1vmin 2vmin;
+      border-radius: 12px;
+      border: 1px solid #999;
+      background: transparent;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>How are you?</h1>
+    <p id="random">…</p>
+    <button id="again" type="button" aria-label="New random text">Another one</button>
+  </div>
+
+  <script>
+    const lines = [
+      "Here’s some random text just to fill the space.",
+      "Bananas are berries; strawberries aren’t.",
+      "The quick brown fox jumps over the lazy dog.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "You’re doing great. Keep going!",
+      "This line is randomly chosen every time."
+    ];
+
+    function pickRandom() {
+      const p = document.getElementById("random");
+      p.textContent = lines[Math.floor(Math.random() * lines.length)];
+    }
+
+    // pick one on load
+    pickRandom();
+
+    // and on button click
+    document.getElementById("again").addEventListener("click", pickRandom);
+  </script>
+</body>
+</html>
